@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Revoke Access   
+{% endblock %}
+
+{% block content %}
+                <h1 class="display-3">
+                    Revoke Access
+                </h1>
+                <p class="form">Are you sure to revoke access of {{book.bname}} from {{user.name}} ?</p>
+                <form action="{{url_for('revoke_access_post', id=book.id)}}" method="POST">
+                    <div class="options">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-check-circle    "></i>
+                            Revoke access
+                        </button>
+                        <button type="button" onclick="history.back()" class="btn btn-success">
+                            <i class="fas fa-times-circle    "></i>
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+{% endblock %}
+
+{% block style %}
+<style>
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .options{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .btn.btn-success,.btn.btn-danger{
+        width: 150px;
+        margin: 0.5%;
+    }
+    p{
+        font-size: 20px;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Book Request    
+{% endblock %}
+
+{% block content %}
+<h3 class="display-3">
+    Book Request
+</h3>
+    <p class="form">{{user.name}} has submitted a request to borrow the book '{{book.bname}}'</p>
+
+
+                <div class="option">
+                    <a href="{{url_for('access_request_issue', id=book.id)}}" class="btn btn-success">
+                        <i class="fas fa-check-circle    "></i>
+                        Issue
+                    </a>
+                    <a href="{{url_for('access_request_reject', id=book.id)}}" class="btn btn-danger">
+                        <i class="fas fa-times-circle    "></i>
+                        Reject
+                    </a>
+                </div>
+    
+{% endblock %}
+
+{% block style %}
+<style>
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .option{
+        align-items: center;
+        text-align: center;
+        margin: 0.5%;
+    }
+    p{
+        font-size: 20px;
+    }
+</style>
+{% endblock %}

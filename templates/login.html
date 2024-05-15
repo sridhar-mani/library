@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block title %}
+Login page
+{% endblock %}
+
+{% block content %}
+
+<h1 class='display'>LOGIN</h1>
+<form action="login" method="POST">
+    <div class='form-group' style="margin-top: 1%;">
+        <label for="username" >Username:</label>
+        <input type="text" name="username" required class="form-control">
+    </div>
+    <div class='form-group'>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required class="form-control">
+    </div>
+    <br>
+    <div class='form-group'>
+        <button type="submit" value="Login" class='btn btn-primary'>LOGIN</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.6%;
+        }
+        .form-group label {
+            margin: 0.5%;
+            width: 100px;
+            text-align: right;
+            font-size: larger;
+        }
+        .form-control {
+            width: 400px;
+            padding: 10px;
+            align-items: center;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}

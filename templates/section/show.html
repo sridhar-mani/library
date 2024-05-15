@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{section.name}} Books
+{% endblock %}
+
+{% block content %}
+
+<h1 class="display-1">
+    {{section.name}} Books
+</h1>
+    <div class="heading">
+        <h2 class="text-muted">
+            Books:
+        </h2>
+        <a href="{{url_for('add_book', section_id=section.id)}}" class="btn btn-success">
+            <i class="fas fa-plus    "></i>
+            Add
+            </a>
+    </div>
+
+
+
+<div class="table-responsive">
+<table class="table table-striped align-middle">
+    <thead class="align-middle">
+        <th style="text-align: center;">Name</th>
+        <th style="text-align: center;">Access status</th>
+        <th style="text-align: center;">Actions</th>
+    </thead>
+    <tbody>
+        {% for book in section.books %}
+        <tr>
+            <td style="text-align: center;">{{book.bname}}</td>
+            <td style="text-align: center;">
+                {% if book.id not in requested_books and book.id not in mybooks %}
+                    Available
+                {% else %}
+                {% if book.id not in mybooks %}
+                    Available - Request Pending
+                {% else %}
+                Not Available
+                {% endif %}
+                {% endif %}
+            </td>
+            <td style="text-align: center;">
+                {% if book.id not in requested_books %}
+                        <a href="" class="btn btn-secondary">
+                            <i class="fa-solid fa-xmark"></i>
+                            No Requests
+                        </a>
+                    {%else%}
+                        {% if book.id not in mybooks %}
+                        <a href="{{url_for('access_request', id=book.id)}}" class="btn btn-success">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Access Request
+                        </a>
+                        {% else %}
+                        <a href="{{url_for('revoke_access', id=book.id)}}" class="btn btn-outline-danger">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Revoke Access
+                        </a>
+                        {% endif %}
+                    {% endif %}
+                <a href="{{url_for('edit_book', id=book.id)}}" class="btn btn-primary">
+                    <i class="fa-solid fa-user-pen"></i>
+                    Edit
+                </a>
+
+                <a href="{{url_for('delete_book', id=book.id)}}" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .heading {
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+           align-items: center;
+        }
+    </style>
+{% endblock %}

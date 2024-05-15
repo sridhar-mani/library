@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Edit Category
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-3">
+        Edit Category
+    </h1>
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <label for="name" class="form-label">
+                Section Name:
+            </label>
+            <input type="text" name="name" id="name" class="form-control" value="{{section.name}}" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="description" class="form-label">
+                Section Description:
+            </label>
+            <input type="text" name="description" id="description" class="form-control" value="{{section.description}}" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-check    "></i>
+                Update
+            </button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .buttons{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 0.05%;
+        }
+        .form-group label {
+            margin-right: 2%; 
+            width: 300px;
+            text-align: right;
+            font-size: larger;
+        }
+        .form-control {
+            width: 900px;
+            padding: 10px;
+            align-items: center;
+            
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}

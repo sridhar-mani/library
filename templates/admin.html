@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Admin dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1 class="display-3">
+    Admin Dashboard
+    
+</h1>
+
+<div class="heading">
+    <h2 class="display-6">Sections:</h2>
+
+    <a href="{{url_for('add_section')}}" class="btn btn-success">
+        <i class="fas fa-plus    "></i>
+        Add
+        </a>  
+</div>
+
+
+<div class="table-responsive">
+<table class="table table-striped align-middle">
+    <thead class="align-middle">
+        <th style="width: 14%; text-align: center;">Name</th>
+        <th style="width: 54%; text-align: center;">Description</th>
+        <th style="width: 5%; text-align: center;">No. of Books</th>
+        <th style="width: 25%; text-align: center;">Actions</th>
+    </thead>
+    <tbody>
+        {% for section in sections %}
+        <tr>
+            <td style="text-align: center;">{{section.name}}</td>
+            <td>{{section.description}}</td>
+            <td style="text-align: center;">{{section.books|length}}</td>
+            <td style="text-align: center;">
+                <a href="{{url_for('show_section', id=section.id)}}" class="btn btn-success">
+                    <i class="fa-solid fa-book-open"></i>
+                    Show
+                </a>
+                <a href="{{url_for('edit_section', id=section.id)}}" class="btn btn-primary">
+                    <i class="fa-solid fa-user-pen"></i>
+                    Edit
+                </a>
+                <a href="{{url_for('delete_section', id=section.id)}}" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .heading {
+           display: flex;
+           flex-direction: row;
+           justify-content: space-between;
+           align-items: center;
+        }
+    </style>
+{% endblock %}

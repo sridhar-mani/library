@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Read Book
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-3">
+        {{book.bname}}
+    </h1>
+    <h6 class="authorname"><em>- {{book.author_name}}</em></h6>
+    <p class="content">{{book.content}}</p>
+
+{% endblock %}
+
+{% block style %}
+    <style>
+        h1{
+            text-align: center;
+            font-size: large;
+            color: black;
+        }
+        .authorname{
+            text-align:center;
+            color: black;
+        }
+        .content{
+            text-align: justify;
+            justify-content:center;
+            white-space: pre-wrap;
+            color: black;
+        }
+        p,h1,h6{
+            @media print{
+                display: none;
+            }
+        }
+    </style>
+{% endblock %}

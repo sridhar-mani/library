@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Delete Category
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-3">
+        Delete Category
+    </h1>
+    <p class="form">
+        Are you sure to delete {{section.name}} section?
+    </p>
+    <form action="" method="post" class="form">
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">
+                <i class="fa-solid fa-trash-can"></i>
+                Yes
+            </button>
+            <button type="button" onclick="history.back()" class="btn btn-success">
+                <i class="fas fa-times    "></i>
+                No
+            </button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        p{
+            font-size: 20px;
+        }
+    </style>
+{% endblock %}

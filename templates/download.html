@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Download Book
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-3">
+        {{book.bname}}
+    </h1>
+    <h6 class="authorname"><em>- {{book.author_name}}</em></h6>
+    <p class="content">{{book.content}}</p>
+
+{% endblock %}
+
+{% block style %}
+    <style>
+        h1{
+            text-align: center;
+            font-size: large;
+            color: black;
+        }
+        .authorname{
+            text-align:center;
+            color: black;
+        }
+        .content{
+            text-align: justify;
+            justify-content:center;
+            white-space: pre-wrap;
+            color: black;
+        }
+        nav{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block script %}
+<script>
+    setTimeout(function() {
+        var libraryUrl = "{{ url_for('library') }}";
+        console.log("Redirecting to: " + libraryUrl);
+        window.location.href = libraryUrl;
+    }, 3000);
+</script>
+
+{% endblock %}
+

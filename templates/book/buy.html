@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Buy Book
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-3">
+        Checkout
+    </h1>
+    <p class="form">
+        Are you sure to buy {{book.bname}} for &#8377;{{book.price}}?
+    </p>
+    <form action="" method="POST" class="form">
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <i class="fa-regular fa-credit-card"></i>
+                Checkout
+            </button>
+            <button type="button" class="btn btn-danger" onclick="history.back()">
+                <i class="fas fa-times    "></i>
+                No
+            </button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block style %}
+    <style>
+        p{
+            text-align: center;
+        }
+        .form-group{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn.btn-success,.btn.btn-danger{
+            width: 115px;
+            margin: 0.5%;
+        }
+        p{
+            font-size: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block script %}
+    <script>
+        setTimeout(function() {
+            window.location.href = "{{ url_for('library') }}";
+        }, 13000);
+    </script>
+{% endblock %}

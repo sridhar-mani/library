@@ -1,0 +1,86 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+    Library
+{% endblock %}
+
+{% block content %}
+{% include 'searchbar.html' with context %}
+
+<hr>
+
+<div class="sections-list">
+    {% for section in sections%}
+        <h3>{{section.name}}</h3>
+        <div class="items-list">
+        {% for book in section.books %}
+        {% if (not param) or (param=='bkname' and bkname.lower() in book.bname.lower()) or (param=='price' and  book.price <= price ) or (param=='pages' and  book.pages <= pages ) or (param=='aname' and  aname.lower() in book.author_name.lower())  %}   
+        <div class="card" style="width: 15rem;">
+                <img src="{{book.cover}}" class="card-img-top" alt="{{book.bname}}">
+                <div class="card-body">
+                <h5 class="card-title">{{book.bname}}</h5>
+                <p class="card-text">
+                    <strong>Price: </strong>&#8377;{{book.price}}
+                </p>
+                    {% if book.id not in requested_books %}
+                    <a href="{{url_for('request_book', book_id=book.id)}}" class="btn btn-primary" style="width: 85px;">Request</a>
+                    {%elif book.id in requested_books %}
+                        {% if book.id not in mybooks %}
+                        {% if book.id in myrequested_books %}
+                        <a href="#" class="btn btn-dark" style="width: 100px;">Requested</a>
+                        {% else %}
+                        <a href="#" class="btn btn-danger" style="width: 110px;">Unavailable</a>
+                        {% endif %}
+                        {% else %}
+                        <a href="{{url_for('read',book_id=book.id)}}" class="btn btn-info" style="width: 85px;">Read</a>
+                        {% endif %}    
+                    {% else %}
+                    <p class="card-text">{{book.return_date}}</p>
+                    <a href="{{url_for('return_book', book_id=book.id)}}" class="btn btn-danger" style="width: 85px;">Return</a>
+                    {% endif %}
+                    <a href="{{url_for('buy',book_id=book.id)}}" class="btn btn-success" style="width: 85px;">Buy</a>
+                </div>
+            </div>
+            <br>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .sections-list{
+            display: flex;
+            flex-direction: column;
+            color: black;
+        }
+        .items-list{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin-right: 2px;
+        }
+        .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 0.2%;
+            color: black;
+
+        }
+        .card-img-top{
+            height: 240px;
+            width: 240px;
+            overflow-wrap: hidden;
+        }
+        .card-img-top{
+            width: 240px;
+            height: 240px;
+            object-fit: cover;
+        }
+    </style>
+{% endblock %}
